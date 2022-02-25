@@ -80,7 +80,7 @@ let pokemonRepository = (function () {
         // Show height in modal
 
         let heightElement = document.createElement('p');
-        heightElement.innertext = height;
+        heightElement.innerText = "Height: " + height;
 
         // Show image of pokemon in modal
 
