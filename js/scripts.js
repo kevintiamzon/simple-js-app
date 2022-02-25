@@ -53,9 +53,9 @@ let pokemonRepository = (function () {
         });
     }
     
-    function showDetails(item){
-        pokemonRepository.loadDetails(item).then(function () {
-        showModal(item.name, item.height, item.imageUrl);
+    function showDetails(pokemon){
+        pokemonRepository.loadDetails(pokemon).then(function () {
+        showModal(pokemon.name, pokemon.height, pokemon.imageUrl);
         });
     }
 
@@ -85,41 +85,36 @@ let pokemonRepository = (function () {
         // Show image of pokemon in modal
 
         let imageElement = document.createElement('img');
-        imageElement.src = pokemon.imageUrl;
+        imageElement.src = imageUrl;
 
         // append elements to Parent element
-
+        modal.appendChild(closeButtonElement);
         modal.appendChild(titleElement);
         modal.appendChild(heightElement);
-        modal.appendChild(typesElement);
         modal.appendChild(imageElement);
         modalContainer.appendChild(modal);
         modalContainer.classList.add('is-visible');
     }
 
     function hideModal() {
+        let modalContainer = document.querySelector('#modal-container');
         modalContainer.classList.remove('is-visible');
       
-        if(dialogPromiseReject) {
-          dialogPromiseReject();
-          dialogPromiseReject = null;
-        }
-      }
-
-    // allows esc. key to exit modal
-    window.addEventListener('keydown', (e) => {
+        // allows esc. key to exit modal
+        window.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
         hideModal();
-        }
-    });
-  
-    // allows click out of modal to exit modal
-    modalContainer.addEventListener('click', (e) => {
+          }
+        });
+
+         // allows click out of modal to exit modal
+        modalContainer.addEventListener('click', (e) => {
         let target = e.target;
         if (target === modalContainer){
         hideModal();
-        }
-    });
+          }
+        });
+      }
 
     return {
         add: add,
