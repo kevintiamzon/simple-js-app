@@ -16,8 +16,7 @@ let pokemonRepository = (function () {
         let button = document.createElement('button');
         listpokemon.classList.add('group-list-item');
         button.innerText = pokemon.name;
-        button.classList.add('button-class');
-        button.classList.add('btn-block')
+        button.classList.add('btn-outline-dark', 'btn-block', 'button-class');
         listpokemon.appendChild(button);
         pokemonList.appendChild(listpokemon);
         button.addEventListener('click', function(event) {
@@ -62,17 +61,11 @@ let pokemonRepository = (function () {
     }
 
     function showModal(name, height, imageUrl){
-        let modalContainer = document.querySelector('#modal-container');
-        modalContainer.innerHTML = '';
-        let modal = document.createElement('div');
-        modal.classList.add('modal');
-        
-        // create a Close button for modal
+        let modalBody = document.querySelector('.modal-body');
+        let modalTitle = doument.querySelector('.modal-title');
 
-        let closeButtonElement = document.createElement('button');
-        closeButtonElement.classList.add('modal-close');
-        closeButtonElement.innerText = 'Close';
-        closeButtonElement.addEventListener('click', hideModal);
+        modalBody.empty();
+        modalTitle.empty();
 
         // create title element for modal
 
@@ -89,34 +82,12 @@ let pokemonRepository = (function () {
         let imageElement = document.createElement('img');
         imageElement.src = imageUrl;
 
+
         // append elements to Parent element
-        modal.appendChild(closeButtonElement);
-        modal.appendChild(titleElement);
-        modal.appendChild(heightElement);
-        modal.appendChild(imageElement);
-        modalContainer.appendChild(modal);
-        modalContainer.classList.add('is-visible');
+        modalTitle.appendChild(titleElement);
+        modalBody.appendChild(heightElement);
+        modalBody.appendChild(imageElement);
     }
-
-    function hideModal() {
-        let modalContainer = document.querySelector('#modal-container');
-        modalContainer.classList.remove('is-visible');
-      
-        // allows esc. key to exit modal
-        window.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
-        hideModal();
-          }
-        });
-
-         // allows click out of modal to exit modal
-        modalContainer.addEventListener('click', (e) => {
-        let target = e.target;
-        if (target === modalContainer){
-        hideModal();
-          }
-        });
-      }
 
     return {
         add: add,
