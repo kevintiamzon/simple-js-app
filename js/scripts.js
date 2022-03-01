@@ -70,7 +70,7 @@ let pokemonRepository = (function () {
         // create title element for modal
 
         let titleElement = document.createElement('h1');
-        titleElement.innerText = name;
+        titleElement.innerText = name[0].toUpperCase() + name.substring(1);
 
         // Show height in modal
 
