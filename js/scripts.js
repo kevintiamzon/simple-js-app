@@ -48,7 +48,6 @@ let pokemonRepository = (function () {
         }).then(function (details) {
           item.imageUrl = details.sprites.front_default;
           item.height = details.height;
-          item.types = details.types;
         }).catch(function (e) {
           console.error(e);
         });
